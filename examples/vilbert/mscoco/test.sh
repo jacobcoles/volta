@@ -7,7 +7,6 @@ TASKS_CONFIG=vilbert_test_tasks
 PRETRAINED=checkpoints/mscoco/${MODEL}/RetrievalFlickr30k_${MODEL_CONFIG}/pytorch_model_18.bin
 OUTPUT_DIR=results/mscoco/${MODEL}
 
-source activate volta
 
 cd ../../..
 python eval_retrieval.py \
@@ -15,4 +14,4 @@ python eval_retrieval.py \
 	--tasks_config_file config_tasks/${TASKS_CONFIG}.yml --task $TASK --split test --batch_size 1 \
 	--output_dir ${OUTPUT_DIR}
 
-conda deactivate
+

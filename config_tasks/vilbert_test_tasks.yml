@@ -24,10 +24,10 @@ TASK7:
   process: retrieval
   task_id: 7
   dataroot: datasets/mscoco
-  features_h5path1: datasets/mscoco/resnet101_faster_rcnn_genome_imgfeats/volta/test_feat.lmdb
+  features_h5path1: /home/guscoleja@GU.GU.SE/volta/data/mscoco/images/coco_images/test2015
   features_h5path2: ''
   train_annotations_jsonpath: ''
-  val_annotations_jsonpath: datasets/mscoco/annotations/test_ann.jsonl
+  val_annotations_jsonpath: /home/guscoleja@GU.GU.SE/aics-project/output.jsonl
   max_seq_length: 30
   max_region_num: 36
   batch_size: 64
