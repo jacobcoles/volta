@@ -1,3 +1,11 @@
+# Own files and crap
+checkpoints/
+data/mscoco/images/coco_images/test2015/
+results/mscoco/vilbert/mscoco/
+data/mscoco/*.tsv
+data/mscoco/*.lmdb
+data/mscoco/*.0
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
