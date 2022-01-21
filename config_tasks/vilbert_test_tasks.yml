@@ -27,7 +27,7 @@ TASK7:
   features_h5path1: /home/guscoleja@GU.GU.SE/volta/data/mscoco/images/coco_images/test2015
   features_h5path2: ''
   train_annotations_jsonpath: ''
-  val_annotations_jsonpath: /home/guscoleja@GU.GU.SE/volta/data/mscoco/output.jsonl
+  val_annotations_jsonpath: /home/xilini@GU.GU.SE/students/volta/data/mscoco/output.jsonl
   max_seq_length: 30
   max_region_num: 36
   batch_size: 64

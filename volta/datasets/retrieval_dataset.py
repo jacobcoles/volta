@@ -293,6 +293,7 @@ class RetrievalDatasetVal(Dataset):
         num_subiters=2,
     ):
         # All the keys in `self._entries` would be present in `self._image_features_reader`
+        print(annotations_jsonpath)
         self._image_entries, self._caption_entries = _load_annotationsVal(annotations_jsonpath, task)
         self._image_features_reader = image_features_reader
         self._tokenizer = tokenizer
@@ -310,8 +311,14 @@ class RetrievalDatasetVal(Dataset):
 
         self.num_subiters = num_subiters
         self.num_images = len(self._image_entries)
+        
+        #print(self.num_images)
+        
         self.max_num_images = self.num_images // self.num_subiters
         self.batches_per_caption = self.num_images // self.max_num_images + self.num_images % self.max_num_images
+        
+        #print('MAX NUM IMAGES', self.max_num_images)
+        #print('BATCHES PER CAPTION', self.batches_per_caption)
 
         self.features_all = np.zeros((len(self._image_entries), self._max_region_num, 2048))
         self.spatials_all = np.zeros((len(self._image_entries), self._max_region_num, self._num_locs))

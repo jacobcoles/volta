@@ -52,7 +52,7 @@ def parse_args():
                         help="The config file which specified the tasks details.")
     parser.add_argument("--task", default="", type=str,
                         help="training task number")
-    parser.add_argument("--num_images", default=1000, type=int,
+    parser.add_argument("--num_images", default=1807, type=int,
                         help="Number of images.")
     parser.add_argument("--captions_per_image", default=5, type=int,
                         help="Number of captions per image.")
@@ -162,9 +162,15 @@ def main():
     model.eval()
     results = []
     others = []
+    
+    #print(args.num_images) # 1000
+    #print(args.captions_per_image) # 5
+    #print(args.num_images) # 1000
+    
     score_matrix = np.zeros((args.num_images * args.captions_per_image, args.num_images))
     target_matrix = np.zeros((args.num_images * args.captions_per_image, args.num_images))
     rank_vector = np.ones(args.num_images * args.captions_per_image) * args.num_images
+    
     count = 0
     for i, batch in tqdm(enumerate(dl_val), total=task2num_iters[task]):
         batch = tuple(t.cuda(device=device, non_blocking=True) for t in batch)
@@ -191,9 +197,17 @@ def main():
             else:
                 vil_logit, _, _, _ = model(question, features, spatials, task, segment_ids, input_mask, image_mask)
 
+                #print(vil_logit.shape)
+                #print(score_matrix.shape)
+                
+                #print(image_idx)
+                #print(max_subiter_images)
+                #print((image_idx + 1) * max_subiter_images)
+                
                 score_matrix[
                     caption_idx, image_idx * max_subiter_images: (image_idx + 1) * max_subiter_images
                 ] = (vil_logit.view(-1).cpu().numpy())
+                
                 target_matrix[
                     caption_idx, image_idx * max_subiter_images: (image_idx + 1) * max_subiter_images
                 ] = (target.view(-1).float().cpu().numpy())
